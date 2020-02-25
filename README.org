@@ -21,17 +21,16 @@ Project was created by David James for the Institute of Transportation Studies (
 ** Files
    - README.org
      - documentation on current project
-   - tester.py
+   - networkTransit.py
      - the script designed to run concurrently with the software
-   - util/intro-otp.pdf
-     - another tutorial that descibes how to use OTP
+   - util/intro-otp.pdf :: another tutorial that descibes how to use OTP
 * Executing
   1. Collecting Files
      1. You will need to collect the otp.jar file
         1. Go to https://repo1.maven.org/maven2/org/opentripplanner/otp/
         2. Navigate to the directory of the highest version number and download the file with extension .shaded.jar.
      2. You will need to collect the necessary GTFS files and the needed map file, so OTP knows what it will be generating
-        1. NOTE: GTFS files must be zipped up, and all its contents should be in the root of the zip archive
+        1. _NOTE_ :: GTFS files must be zipped up, and all its contents should be in the root of the zip archive
         2. the map file is downloaded from http://download.geofabrik.de/ go through the subregions until you find the map resolution that you need and download the .osm.pbf file
      3. You should shrink your pbf map file, so that you don't need as much RAM to run the server
         #+BEGIN_SRC bash
@@ -41,11 +40,11 @@ Project was created by David James for the Institute of Transportation Studies (
         #+END_SRC
         1. https://boundingbox.klokantech.com/ set to CSV outputs the value needed for the -b flag
      4. After you have gotten the necessary files, we will put the files in the following directory manner
-        1. the root directory will be "otp" and it'll contain a "graphs" directoy and the .jar file
+        1. the root directory will be "otp" and it'll contain a "graphs" directoy and the .jar file from (step i.)
         2. the "graphs" directory will have another directory called "current"
-        3. the "current" directory will contain your gtfs files and the pbf map file
-           1. NOTE: the "current" directory must only contain ONE pbf file
-              1. if you decided to shrink the original file, move it somewhere else, so OTP doesn't overwrite
+        3. the "current" directory will contain your gtfs files (step ii.) and the pbf map file (step iii.)
+           1. _NOTE_:: the "current" directory must only contain *ONE* pbf file
+              1. if you decided to shrink the original file, move it somewhere outside of the "otp" directory, so OTP doesn't overwrite
   2. OTP Server
      #+BEGIN_SRC bash
        # make sure you are in the "otp" directory
