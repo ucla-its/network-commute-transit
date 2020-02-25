@@ -19,20 +19,17 @@ Project was created by David James for the Institute of Transportation Studies (
   3. The Java side is what creates and runs the OTP server, and it needs to be running before running the Python script
   4. The current script has been implemented with it to execute the calculations in parallel
 ** Files
-   - README.org
-     - documentation on current project
-   - networkTransit.py
-     - the script designed to run concurrently with the software
+   - README.org :: documentation on current project
+   - networkTransit.py :: the script designed to run concurrently with the software
    - util/intro-otp.pdf :: another tutorial that descibes how to use OTP
-* Executing
+* Installing and Setting Up
   1. Collecting Files
      1. You will need to collect the otp.jar file
         1. Go to https://repo1.maven.org/maven2/org/opentripplanner/otp/
         2. Navigate to the directory of the highest version number and download the file with extension .shaded.jar.
      2. You will need to collect the necessary GTFS files and the needed map file, so OTP knows what it will be generating
-        NOTE :: check this out
-        1. NOTE :: GTFS files must be zipped up, and all its contents should be in the root of the zip archive
-        2. the map file is downloaded from http://download.geofabrik.de/ go through the subregions until you find the map resolution that you need and download the .osm.pbf file
+        - NOTE :: GTFS files must be zipped up, and all its contents should be in the root of the zip archive
+        - the map file is downloaded from http://download.geofabrik.de/ go through the subregions until you find the map resolution that you need and download the .osm.pbf file
      4. You should shrink your pbf map file, so that you don't need as much RAM to run the server
         #+BEGIN_SRC bash
           # this is an example of the command that can shrink the pbf file
@@ -44,9 +41,9 @@ Project was created by David James for the Institute of Transportation Studies (
         1. the root directory will be "otp" and it'll contain a "graphs" directoy and the .jar file from (step i.)
         2. the "graphs" directory will have another directory called "current"
         3. the "current" directory will contain your gtfs files (step ii.) and the pbf map file (step iii.)
-           1. _NOTE_:: the "current" directory must only contain *ONE* pbf file
-              1. if you decided to shrink the original file, move it somewhere outside of the "otp" directory, so OTP doesn't overwrite
-  2. OTP Server
+           - NOTE :: the "current" directory must only contain *ONE* pbf file, if you decided to shrink the original file, move it somewhere outside of the "otp" directory, so OTP doesn't overwrite
+* Executing
+  1. OTP Server
      #+BEGIN_SRC bash
        # make sure you are in the "otp" directory
        # the following command generates the object
@@ -58,5 +55,5 @@ Project was created by David James for the Institute of Transportation Studies (
      #+END_SRC
      1. Response
         1. http://dev.opentripplanner.org/apidoc/1.0.0/json_Response.html
-  3. Extra Help
+  2. Extra Help
      1. If extra documentation is need refer to http://docs.opentripplanner.org/en/latest/Basic-Tutorial/
