@@ -42,10 +42,10 @@ Project was created by David James for the Institute of Transportation Studies (
         1. https://boundingbox.klokantech.com/ set to CSV outputs the value needed for the -b flag
   3. _Organize your files_
      1. After you have gotten the necessary files, we will put the files in the following directory manner
-        1. the root directory will be /otp/ and it'll contain a /graphs/ directoy and the .jar file from (step i.)
-        2. the /graphs/ directory will have another directory called /current/
-        3. the /current/ directory will contain your GTFS files (step ii.) and the pbf map file (step iii.)
-           - NOTE :: The /current/ directory must only contain *ONE* pbf file, if you decided to shrink the original file, move it somewhere outside of the /otp/ directory, so OTP doesn't overwrite.
+        1. the root directory will be =otp= and it'll contain a =graphs= directoy and the .jar file from (step i.)
+        2. the =graphs= directory will have another directory called =current=
+        3. the =current= directory will contain your GTFS files (step ii.) and the pbf map file (step iii.)
+           - NOTE :: The =current= directory must only contain *ONE* pbf file, if you decided to shrink the original file, move it somewhere outside of the =otp= directory, so OTP doesn't overwrite.
   4. _Generate the OTP file_
      1. You will run the following command to generate an image of the map with the transit routes
         #+BEGIN_SRC bash
@@ -53,8 +53,9 @@ Project was created by David James for the Institute of Transportation Studies (
           # the following command generates the object file
           java -Xmx3G -jar otp.jar --build graphs/current
         #+END_SRC
-        - NOTE :: This takes about 10 minutes to build the file depending on your machine.
-        -  :: You should see a Graph.obj file in the /current/ directory
+        - NOTE ::
+                  - This takes about 10 minutes to build the file depending on your machine.
+                  - You should see a =Graph.obj= file in the =current= directory
 * Executing
   1. _Start the OTP Server_
      1. This command will start up the server
