@@ -30,7 +30,7 @@ Project was created by David James for the Institute of Transportation Studies (
         1. Go to https://repo1.maven.org/maven2/org/opentripplanner/otp/
         2. Navigate to the directory of the highest version number and download the file with extension .shaded.jar.
      2. You will need to collect the necessary GTFS files and the needed map file, so OTP knows what it will be generating
-        1. _NOTE_ :: GTFS files must be zipped up, and all its contents should be in the root of the zip archive
+        1. NOTE :: GTFS files must be zipped up, and all its contents should be in the root of the zip archive
         2. the map file is downloaded from http://download.geofabrik.de/ go through the subregions until you find the map resolution that you need and download the .osm.pbf file
      3. You should shrink your pbf map file, so that you don't need as much RAM to run the server
         #+BEGIN_SRC bash
