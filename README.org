@@ -1,6 +1,6 @@
 #+TITLE: Network Transit
 #+AUTHOR: David James, davidabraham@ucla.edu
-#+DATE: 2020 Feb 20
+#+DATE: 2020 Feb 25
 
 This project calcultes the network travel time between a source and destination point for transit routes.
 It uses Open Trip Planner (OTP) software to calculate the time difference.
@@ -16,6 +16,7 @@ Project was created by [[https://github.com/dj-2805][David James]] for the Insti
      | requests                   |
      | datetime                   |
      | multiprocessing (included) |
+     | logging (included)         |
   3. The Java side is what creates and runs the OTP server, and it needs to be running before running the Python script
   4. The current script has been implemented with it to execute the calculations in parallel
 ** Files
