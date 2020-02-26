@@ -2,8 +2,11 @@ import requests
 import pandas as pd
 import multiprocessing as mp
 import datetime as dt
+import logging as lg
 
 def mp_transitDriver(data):
+    lg.basicConfig(format='%(asctime)s %(message)s')
+
     keys = data.keys()
 
     cores = mp.cpu_count()
@@ -15,13 +18,11 @@ def mp_transitDriver(data):
                for i in range(cores)]
     pool = mp.Pool(cores)
 
-    now = dt.datetime.now().strftime("%H%M")
-    print('Starting processing at', now)
+    lg.info('Started processing')
 
     results = pool.map(mp_transitTime,mpCount)
 
-    now = dt.datetime.now().strftime("%H%M")
-    print('Finished processing at', now)
+    lg.info('Finished processing')
 
     df = pd.concat([pd.DataFrame(d) for d in results],ignore_index=True)
     pool.close()
@@ -78,6 +79,5 @@ def mp_transitTime(index):
             responses[cols[5]].append(None)
             responses[cols[6]].append(response['error']['msg'][0:14])
 
-    now = dt.datetime.now().strftime("%H%M")
-    print('index',index,'done processing', now, wid)
+    lg.info('index ' + str(index) + ' done processing: ' + str(wid))
     return responses
