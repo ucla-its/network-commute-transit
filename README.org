@@ -25,7 +25,8 @@ Project was created by [[https://github.com/dj-2805][David James]] for the Insti
 * Installing and Setting Up
   Before beging, you will need to run any bash commands from your terminal.
   If you're running a Mac, search for the application called 'terminal'.
-  _1. Collecting files_
+
+  1. Collecting files
      1. You will need to collect the otp.jar file
         1. Go [[https://repo1.maven.org/maven2/org/opentripplanner/otp/][here]]
         2. Navigate to the directory of the highest version number and download the file with extension .shaded.jar.
