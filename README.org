@@ -3,7 +3,7 @@
 #+DATE: 2020 Feb 20
 
 This project calcultes the network travel time between a source and destination point for transit routes.
-It uses Open Trip Planner (otp) software to calculate the time difference.
+It uses Open Trip Planner (OTP) software to calculate the time difference.
 
 Project was created by [[https://github.com/dj-2805][David James]] for the Institute of Transportation Studies (ITS).
 
@@ -24,16 +24,16 @@ Project was created by [[https://github.com/dj-2805][David James]] for the Insti
    - util/intro-otp.pdf :: another tutorial that descibes how to use OTP
 * Installing and Setting Up
   Before beging, you will need to run any bash commands from your terminal.
-  If you're running a Mac, search for the application called 'terminal'.
+  If you're running a Mac, search for the application called ~terminal~.
 
-  1. Collecting files
-     1. You will need to collect the otp.jar file
+  1. _Collecting files_
+     1. You will need to collect the =otp.jar= file
         1. Go [[https://repo1.maven.org/maven2/org/opentripplanner/otp/][here]]
-        2. Navigate to the directory of the highest version number and download the file with extension .shaded.jar.
+        2. Navigate to the directory of the highest version number and download the file with extension =.shaded.jar.=
      2. You will need to collect the necessary GTFS files, so OTP knows what transit routes it will generate
         - NOTE :: GTFS files must be zipped up, and all its contents should be in the root of the zip archive
      3. You will need the map file, so OTP knows what area to generate with the transit routes
-        - the map file is downloaded from [[http://download.geofabrik.de/][here]] go through the subregions until you find the map resolution that you need and download the .osm.pbf file
+        - the map file is downloaded from [[http://download.geofabrik.de/][here]] go through the subregions until you find the map resolution that you need and download the =.osm.pbf= file
   2. _Modifying your pbf map file (not required)_
      1. You should shrink your pbf map file, so that you don't need as much RAM to run the server
         #+BEGIN_SRC bash
@@ -46,7 +46,7 @@ Project was created by [[https://github.com/dj-2805][David James]] for the Insti
      1. After you have gotten the necessary files, we will put the files in the following directory manner
         1. the root directory will be =otp= and it'll contain a =graphs= directoy and the .jar file (1.i.)
         2. the =graphs= directory will have another directory called =current=
-        3. the =current= directory will contain your GTFS files (1.ii.) and the pbf map file (step iii.)
+        3. the =current= directory will contain your GTFS files (1.ii.) and the pbf map file (1.iii.)
            - NOTE :: The =current= directory must only contain *ONE* pbf file, if you decided to shrink the original file, move it somewhere outside of the =otp= directory, so OTP doesn't overwrite.
   4. _Generate the OTP file_
      1. You will run the following command to generate an image of the map with the transit routes
@@ -71,4 +71,4 @@ Project was created by [[https://github.com/dj-2805][David James]] for the Insti
         - Remark :: For more documentation on what OTP can output refer to [[http://dev.opentripplanner.org/apidoc/1.0.0/json_Response.html][this]] for a description of their =JSON= response.
 * Extra Help
   1. If extra instruction is needed to setup OTP refer to [[http://docs.opentripplanner.org/en/latest/Basic-Tutorial/][this]]
-  2. In the =util= directory of this repository is another instruction file =intro-otp.pdf= that comes from [[https://github.com/marcusyoung/otp-tutorial][this]]
+  2. In the =util= directory of this repository is another instruction file =intro-otp.pdf= that comes from [[https://github.com/marcusyoung/otp-tutorial][another repository]] using OTP.
