@@ -117,6 +117,9 @@ Project was created by [[https://github.com/dj-2805][David James]] for the Insti
           #                                         format can be 11/12/18 or 11-12-18)
           # @return: NONE
           mp_transitDriver(data)
+
+          # the output from this will create new CSV files which are the results of the output
+          # depending on how large your sample of data is, this can take several hours to run
         #+END_SRC
   3. _Response from the server_
      1. The response will give a json output. Where the current script takes the time values of the trip.
