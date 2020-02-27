@@ -44,7 +44,7 @@ Project was created by [[https://github.com/dj-2805][David James]] for the Insti
   2. _Collecting files_
      1. You will need to collect the =otp.jar= file
         1. Go [[https://repo1.maven.org/maven2/org/opentripplanner/otp/][here]]
-        2. Navigate to the directory of the highest version number and download the file with extension =.shaded.jar.=
+        2. Navigate to the directory of the highest version number and download the file with extension =.shaded.jar=.
      2. You will need to collect the necessary GTFS files, so OTP knows what transit routes it will generate
         - NOTE :: GTFS files must be zipped up, and all its contents should be in the root of the zip archive
      3. You will need the map file, so OTP knows what area to generate with the transit routes
@@ -62,13 +62,17 @@ Project was created by [[https://github.com/dj-2805][David James]] for the Insti
         1. Create a directory called =otp= and it'll contain a =graphs= directoy and the ~.jar~ file (2.i.)
         2. The =graphs= directory will have another directory called =current=
         3. The =current= directory will contain your GTFS files (2.ii.) and the pbf map file (2.iii. or 3.i.)
-           - NOTE :: The =current= directory must only contain *ONE* pbf file, if you decided to shrink the original file, move it somewhere outside of the =otp= directory, so OTP doesn't overwrite.
+           - NOTE :: The =current= directory must contain only *ONE* pbf file, if you decided to shrink the original file, move the original somewhere outside of the =otp= directory, so OTP doesn't overwrite when generating the map.
   5. _Generate the OTP file_
      1. You will run the following command to generate an image of the map with the transit routes
         #+BEGIN_SRC bash
           # make sure you are in the otp directory
           # the following command generates the object file
           java -Xmx3G -jar otp.jar --build graphs/current
+
+          # the -Xmx3G flag decideds how much RAM to use to generate the image
+          # 3G was the needed amount for generating LA County with its transit network
+          # if this command crashes it could be due to not enough RAM being allocated
         #+END_SRC
         - NOTE ::
           - This takes about 10 minutes to build the file depending on your machine.
@@ -83,9 +87,40 @@ Project was created by [[https://github.com/dj-2805][David James]] for the Insti
      - NOTE :: You will see =Grizzly server running= near the end, meaning that the server is up.
   2. _Access the OTP server_
      1. The Python script, ~networkTransit.py~, has a function that will call the server and collect its responses
+        #+BEGIN_SRC python
+          # import the function from the .py file
+          from networkTransit import mp_transitDriver
+
+          # you will need the pandas library
+          import pandas as pd
+
+          data = pd.read_csv('someData.csv')
+
+          # the following is the function header for the input and how the data needs to be organized
+          # If you're data has extra columns or is not formated correctly
+          # you may get errors or incorrect output
+          # for more information on the script check the module for the other comments
+
+          # ################################################################################
+          # function mp_transitDriver
+          # A function designed to run mp_transitTime when given a set
+          # of data to process.
+          # @param: DataFrame(
+          #            Series, data['Trip ID']    - int,   Unique ID code for trip
+          #            Series, data['Source Lat'] - float, source latitude
+          #            Series, data['Source Lon'] - float, source longiutde
+          #            Series, data['Dest Lat']   - float, destination latitude
+          #            Series, data['Dest Lon']   - float, destination longitude
+          #            Series, data['time']       - str,   time to arrive by the destination
+          #                                         format can be 15:42:1 or 3.42pm
+          #            Series, data['date']       - str,   date of the trip
+          #                                         format can be 11/12/18 or 11-12-18)
+          # @return: NONE
+          mp_transitDriver(data)
+        #+END_SRC
   3. _Response from the server_
      1. The response will give a json output. Where the current script takes the time values of the trip.
         - Remark :: For more documentation on what OTP can output refer to [[http://dev.opentripplanner.org/apidoc/1.0.0/json_Response.html][this]] for a description of their =JSON= response.
 * Extra Help
   1. If extra instruction is needed to setup OTP refer to [[http://docs.opentripplanner.org/en/latest/Basic-Tutorial/][this]]
-  2. In the =util= directory of this repository is another instruction file =intro-otp.pdf= that comes from [[https://github.com/marcusyoung/otp-tutorial][another repository]] using OTP.
+  2. In the =util= directory of this repository is another instruction file =intro-otp.pdf= that comes from a [[https://github.com/marcusyoung/otp-tutorial][different repository]] using OTP.
