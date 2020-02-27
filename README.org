@@ -14,7 +14,7 @@ Project was created by [[https://github.com/dj-2805][David James]] for the Insti
      |----------------------------|
      | pandas                     |
      | requests                   |
-     | datetime                   |
+     | datetime (included)        |
      | multiprocessing (included) |
      | logging (included)         |
   3. The Java side is what creates and runs the OTP server, and it needs to be running before running the Python script
@@ -24,10 +24,24 @@ Project was created by [[https://github.com/dj-2805][David James]] for the Insti
    - networkTransit.py :: the script designed to run concurrently with the software
    - util/intro-otp.pdf :: another tutorial that descibes how to use OTP
 * Installing and Setting Up
-  Before beging, you will need to run any bash commands from your terminal.
+  Before beginning, you will need to run any bash commands from your terminal.
   If you're running a Mac, search for the application called ~terminal~.
 
-  1. _Collecting files_
+  1. _Installing Java and Python_
+     1. You will need to make sure that the languages are installed
+        1. Go [[https://java.com/en/download/help/download_options.xml][here]] to install Java
+        2. Go [[https://www.python.org/downloads/][here]] to install Python
+        3. When installations are complete run the following commands
+           #+BEGIN_SRC bash
+             # this should Python 3.#.# showing your current version
+             python3 --version
+
+             # similar to the previous command
+             # you should see Openjdk #.#.#
+             java --version
+           #+END_SRC
+           - NOTE :: If you are getting an error, then the installation was not done correctly. You will need to troubleshoot this step before proceeding.
+  2. _Collecting files_
      1. You will need to collect the =otp.jar= file
         1. Go [[https://repo1.maven.org/maven2/org/opentripplanner/otp/][here]]
         2. Navigate to the directory of the highest version number and download the file with extension =.shaded.jar.=
@@ -35,7 +49,7 @@ Project was created by [[https://github.com/dj-2805][David James]] for the Insti
         - NOTE :: GTFS files must be zipped up, and all its contents should be in the root of the zip archive
      3. You will need the map file, so OTP knows what area to generate with the transit routes
         - the map file is downloaded from [[http://download.geofabrik.de/][here]] go through the subregions until you find the map resolution that you need and download the =.osm.pbf= file
-  2. _Modifying your pbf map file (not required)_
+  3. _Modifying your pbf map file (not required)_
      1. You should shrink your pbf map file, so that you don't need as much RAM to run the server
         #+BEGIN_SRC bash
           # this is an example of the command that can shrink the pbf file
@@ -43,13 +57,13 @@ Project was created by [[https://github.com/dj-2805][David James]] for the Insti
           osmconvert oregon-latest.osm.pbf -b=-123.043,45.246,-122.276,45.652 --complete-ways -o=portland.pbf
         #+END_SRC
         1. [[https://boundingbox.klokantech.com/][This]] website with the option CSV outputs the value needed for the -b flag
-  3. _Organize your files_
+  4. _Organize your files_
      1. After you have gotten the necessary files, we will put the files in the following directory manner
-        1. the root directory will be =otp= and it'll contain a =graphs= directoy and the .jar file (1.i.)
-        2. the =graphs= directory will have another directory called =current=
-        3. the =current= directory will contain your GTFS files (1.ii.) and the pbf map file (1.iii.)
+        1. Create a directory called =otp= and it'll contain a =graphs= directoy and the ~.jar~ file (2.i.)
+        2. The =graphs= directory will have another directory called =current=
+        3. The =current= directory will contain your GTFS files (2.ii.) and the pbf map file (2.iii. or 3.i.)
            - NOTE :: The =current= directory must only contain *ONE* pbf file, if you decided to shrink the original file, move it somewhere outside of the =otp= directory, so OTP doesn't overwrite.
-  4. _Generate the OTP file_
+  5. _Generate the OTP file_
      1. You will run the following command to generate an image of the map with the transit routes
         #+BEGIN_SRC bash
           # make sure you are in the otp directory
@@ -67,7 +81,9 @@ Project was created by [[https://github.com/dj-2805][David James]] for the Insti
        java -Xmx3G -jar otp.jar --router current --graphs graphs --server
      #+END_SRC
      - NOTE :: You will see =Grizzly server running= near the end, meaning that the server is up.
-  2. _Response from the server_
+  2. _Access the OTP server_
+     1. The Python script, ~networkTransit.py~, has a function that will call the server and collect its responses
+  3. _Response from the server_
      1. The response will give a json output. Where the current script takes the time values of the trip.
         - Remark :: For more documentation on what OTP can output refer to [[http://dev.opentripplanner.org/apidoc/1.0.0/json_Response.html][this]] for a description of their =JSON= response.
 * Extra Help
