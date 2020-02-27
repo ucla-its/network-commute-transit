@@ -86,7 +86,7 @@ Project was created by [[https://github.com/dj-2805][David James]] for the Insti
      #+END_SRC
      - NOTE :: You will see =Grizzly server running= near the end, meaning that the server is up.
   2. _Access the OTP server_
-     1. The Python script, ~networkTransit.py~, has a function that will call the server and collect its responses
+     1. The Python script, ~networkTransit.py~, has a function that will call the server and collect the responses
         #+BEGIN_SRC python
           # import the function from the .py file
           from networkTransit import mp_transitDriver
@@ -97,7 +97,7 @@ Project was created by [[https://github.com/dj-2805][David James]] for the Insti
           data = pd.read_csv('someData.csv')
 
           # the following is the function header for the input and how the data needs to be organized
-          # If you're data has extra columns or is not formated correctly
+          # If you're data has extra columns or is not formatted correctly
           # you may get errors or incorrect output
           # for more information on the script check the module for the other comments
 
