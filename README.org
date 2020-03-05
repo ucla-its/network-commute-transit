@@ -54,7 +54,10 @@ Project was created by [[https://github.com/dj-2805][David James]] for the Insti
         #+BEGIN_SRC bash
           # this is an example of the command that can shrink the pbf file
           # you will need to install osmconvert if your system doesn't have it yet
-          osmconvert oregon-latest.osm.pbf -b=-123.043,45.246,-122.276,45.652 --complete-ways -o=portland.pbf
+          osmconvert socal-latest.osm.pbf -b=-118.9647,33.1005,-116.7894,34.9847 --complete-ways -o=socal.pbf
+
+          # this example is has the similar coordinates I used to shrink socal-latest
+          # to mainly cover LA county and some of its exterior
         #+END_SRC
         1. [[https://boundingbox.klokantech.com/][This]] website with the option CSV outputs the value needed for the -b flag
   4. _Organize your files_
